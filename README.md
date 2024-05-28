@@ -42,3 +42,60 @@ The numerical columns are looking reasonable, there’s no anomaly in any of the
 
 The year column is a numerical column, as we can see the max value is 2018, and the min is 2003, we can visualize using a histogram, with 16 bins (one bin for each year). So below we could see the number of cars available (count) for each year.
 
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/41f0a7d1-a8d7-46ed-bfc1-3985f051d23f)
+
+The distribution is skewed and has some outliers that could be handled. But since we don’t have too many examples (rows) in our data we could also ignore it and leave them as they are.
+
+# Selling Price
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/63702d6f-2efc-4024-91ef-14c1d36e39ea)
+
+The distribution is skewed and we also can observe that automatic cars are more expensive. As the selling price increases, we could see this in ur box plot above.
+
+# Kilometers Driven
+Let’s visualize the Selling Price, and also include the categorical column Transmission to distinguish selling prices for Manual cars and Automatic cars
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/9aa630fc-837f-420d-8085-8910c03511ac)
+
+As we can see from the plot above, most of the numerical values range from 0 to 100k kms, and there are some outliers.
+
+Another intuitive hypothesis that we could make is that the more kilometers a car has, the lower its price will be. Let’s see if this is true. We can use a scatter plot to visualize the relationship between two numerical features.
+
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/635991fe-9324-46d7-b5a5-ae6f50ec3445)
+
+We can’t say that from this plot above we can’t conclude that the more kilometers the cheaper the prices. But this can also be because of the distribution of Kms since most of the values are in 0–100k.
+
+Let’s check if Selling_Price and Present_Price are correlated.
+
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/76aa5973-1bf4-47ad-8db5-e58075be5837)
+
+As we can see, the greater the present price the greater the selling price, this is also intuitive because the cars that are expensive, will probably also be sold at higher prices.
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/e328ac93-7161-49f6-8794-43fd2d4ae463)
+
+Model
+The goal will be to fit a line using these points in the 2D plot above. Where x represents our feature (Present Price) and our goal would be to predict y (Selling Price). A line in a 2D (X and Y) coordinates has the formula:
+
+y = w * x + b
+
+If we would substitute our feature and target in the formula above, it would look like this:
+
+selling_price = w * present_price + b
+
+The goal would be to find the values of w and b parameters which would result in a line that best fits the data (as a result our predictions will be correct, we would fit any present_price value and it will tell us the selling price of it).
+
+This method we’re using is called linear regression, where the equation above is known as the linear regression model. Because it formulates the correlation between “Present Price” and “Selling Price” in a shape of a straight line. The ‘w’ and ‘b’ are usually known as model parameters or their weights.
+
+In this dataset, the values that are under the column (feature) “Present_Price” are considered as the model’s input, while the values in the “Selling Price” column are known as “targets”.
+
+# Correlation
+As we can observe from the analysis, some columns are more closely related to the selling price, compared to the others. For example “Year” gets larger, and so does the Selling_Price. While Kilometers driven and selling prices do not grow together.
+
+This relationship can be numerically expressed using a measure called correlation coefficient, which can be computed using the .corr method from the pandas' library.
+
+# To Compute the correlation coefficient of selling_price and Year:
+![image](https://github.com/SLJyothi/Linear-Regression-Car-Price-Prediction-and-Data-Analysis/assets/164232591/f1ccd661-4876-4269-ad8a-cea7e483800b)
+
+We could observe from the values above, that there’s a high correlation between present_price and selling_price but less correlation between kilometers driven and selling price.
+
+To interpret correlation coefficients:
+
+Strength: The values can range between -1 and 1 indicating a perfectly linear relationship where a change in one variable is followed by a perfectly consistent change to the other. In practice, you usually won’t see this kind of relationship.
+A zero value of the coefficient represents no linear relationship.
